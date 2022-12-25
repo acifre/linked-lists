@@ -1,7 +1,18 @@
 
 class LinkedList
 
+  def initialize(head, tail)
+    @head = nil
+    @tail = nil
+
+  end
+
 #append(value) adds a new node containing value to the end of the list
+
+def append(value)
+
+
+end
 
 #prepend(value) adds a new node containing value to the start of the list
 

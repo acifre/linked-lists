@@ -1,4 +1,3 @@
-
 class Node
 
   attr_accessor :value, :next_node
@@ -8,7 +7,6 @@ class Node
     @value = value
     @next_node = next_node
   end
-
 end
 
 class LinkedList
@@ -159,12 +157,17 @@ class LinkedList
     end
     index
   end
+  def to_s
+    #to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil
+    string = ""
+    n = 0
+    until n == self.size
+      string += "#{self.at(n).value} -> "
+      n += 1
+    end
+    string += "nil"
+  end
 
-
-
-
-
-#to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil
 
 
 end
@@ -195,3 +198,5 @@ puts new_list.at(3).value
 
 puts new_list.contains?(1419)
 puts new_list.find(1419)
+
+puts new_list.to_s

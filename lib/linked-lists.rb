@@ -21,15 +21,21 @@ class LinkedList
 
   end
 
-
+  def is_empty?
+      if @head == nil
+          return true
+      else
+          return false
+      end
+  end
 
 def append(value)
   #append(value) adds a new node containing value to the end of the list
-  if @head == nil
+  if self.is_empty?
     @head = Node.new(value)
   else
     @tail = Node.new(value)
-    @head.next_node = @tail.value
+    @head.next_node = @tail
   end
 
 
@@ -37,14 +43,14 @@ end
 
 def prepend(value)
   #prepend(value) adds a new node containing value to the start of the list
-  if @head == nil && @tail == nil
+  if self.is_empty?
     append(value)
-  elsif @head != nil && @tail == nil
+  elsif @tail == nil
     @tail = @head
-    @head = Node.new(value, @tail.value)
+    @head = Node.new(value, @tail)
     @tail.next_node = nil
-  elsif @head != nil && @tail != nil
-     new_n = Node.new(value, @head.value)
+  elsif @tail != nil
+     new_n = Node.new(value, @head)
      @head = new_n
     # have to move everything down by one
     # so if list only contains head (head not empty, tail empty)
@@ -56,9 +62,22 @@ def prepend(value)
   end
 end
 
-#size returns the total number of nodes in the list
+def size
 
+  if self.is_empty?
+    count = 0
+  else
+    count = 1
+    current_node = @head
 
+    while current_node.next_node != nil
+      current_node = current_node.next_node
+      count += 1
+    end
+
+  end
+  count
+end
 
 def head
   #head returns the first node in the list
@@ -102,3 +121,5 @@ new_list.prepend(8122)
 
 puts new_list.head
 puts new_list.tail
+
+puts new_list.size

@@ -90,34 +90,58 @@ class LinkedList
     @tail
 
   end
+  def at(index)
+    #at(index) returns the node at the given index
 
-#at(index) returns the node at the given index
-def at(index)
-
-  if self.is_empty?
-    return "ERROR: list empty"
-  else
-    count = 0
-    current_node = @head
-    if count == index
-      return current_node.value
-    end
-
-    while current_node.next_node != nil
-      current_node = current_node.next_node
-      count += 1
-
+    if self.is_empty?
+      return "ERROR: list empty"
+    else
+      count = 0
+      current_node = @head
       if count == index
-        return current_node.value
+        return current_node
       end
+
+      while current_node.next_node != nil
+        current_node = current_node.next_node
+        count += 1
+
+        if count == index
+          return current_node
+        end
+      end
+
+    end
+  end
+  def pop
+
+    # pop removes the last element from the list
+    if self.is_empty?
+      return "ERROR: list empty"
+    elsif self.size < 2
+      @head = nil
+      @tail = nil
+    elsif self.size == 2
+      @tail = nil
+    else
+      before_tail = at(size - 2) # before the tail
+      @tail = nil
+      @tail = before_tail #at(size - 1) # tail
+      @tail.next_node = nil
     end
 
   end
-end
 
-#pop removes the last element from the list
-
-#contains?(value) returns true if the passed in value is in the list and otherwise returns false.
+  def contains?(value)
+    #contains?(value) returns true if the passed in value is in the list and otherwise returns false.
+    does = false
+    n = 0
+    until n == self.size
+      does = true if self.at(n).value == value
+      n += 1
+    end
+    does
+  end
 
 #find(value) returns the index of the node containing value, or nil if not found.
 
@@ -135,18 +159,19 @@ new_list.append(1234)
 
 new_list.append(5678)
 
-puts new_list.head
-puts new_list.tail
-
 new_list.append(8122)
-
-puts new_list.head
-puts new_list.tail
-
-puts new_list.size
 
 new_list.append(1419)
 
 puts new_list.size
 
-puts new_list.at(2)
+# new_list.pop
+
+puts new_list.size
+
+puts new_list.at(0).value
+puts new_list.at(1).value
+puts new_list.at(2).value
+puts new_list.at(3).value
+
+puts new_list.contains?(1419)

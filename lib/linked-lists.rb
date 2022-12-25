@@ -131,19 +131,38 @@ class LinkedList
     end
 
   end
-
   def contains?(value)
     #contains?(value) returns true if the passed in value is in the list and otherwise returns false.
     does = false
-    n = 0
-    until n == self.size
-      does = true if self.at(n).value == value
-      n += 1
+    if self.is_empty?
+      return "ERROR: list empty"
+    else
+      n = 0
+      until n == self.size
+        does = true if self.at(n).value == value
+        n += 1
+      end
     end
     does
   end
+  def find(value)
+    #find(value) returns the index of the node containing value, or nil if not found.
+    index = nil
+    if self.is_empty?
+      return "ERROR: list empty"
+    else
+      n = 0
+      until n == self.size
+        index = n if self.at(n).value == value
+        n += 1
+      end
+    end
+    index
+  end
 
-#find(value) returns the index of the node containing value, or nil if not found.
+
+
+
 
 #to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> nil
 
@@ -175,3 +194,4 @@ puts new_list.at(2).value
 puts new_list.at(3).value
 
 puts new_list.contains?(1419)
+puts new_list.find(1419)
